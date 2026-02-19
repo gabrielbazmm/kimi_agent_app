@@ -1,0 +1,364 @@
+/* Boxlab Designer - Estilo inspirado en Bang & Olufsen */
+
+/* Variables de color B&O */
+:root {
+  --bo-white: #fafaf9;
+  --bo-warm-gray: #f5f5f0;
+  --bo-light-gray: #e8e8e3;
+  --bo-gray: #c4c4bf;
+  --bo-dark-gray: #6b6b66;
+  --bo-charcoal: #2a2a28;
+  --bo-black: #1a1a18;
+  --bo-oak: #8b7355;
+  --bo-warm-beige: #c4b8a8;
+  
+  /* Sombras sutiles */
+  --shadow-soft: 0 2px 20px rgba(0, 0, 0, 0.06);
+  --shadow-medium: 0 4px 30px rgba(0, 0, 0, 0.08);
+  --shadow-strong: 0 8px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Estilos base */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bo-white);
+  color: var(--bo-black);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+/* Custom scrollbar minimalista */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bo-gray);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--bo-dark-gray);
+}
+
+/* Slider personalizado estilo B&O */
+[data-slot="slider-track"] {
+  background: var(--bo-light-gray) !important;
+  height: 3px !important;
+}
+
+[data-slot="slider-range"] {
+  background: var(--bo-charcoal) !important;
+}
+
+[data-slot="slider-thumb"] {
+  width: 16px !important;
+  height: 16px !important;
+  background: white !important;
+  border: 2px solid var(--bo-charcoal) !important;
+  box-shadow: var(--shadow-soft) !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+[data-slot="slider-thumb"]:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-medium) !important;
+}
+
+[data-slot="slider-thumb"]:active {
+  transform: scale(0.95);
+}
+
+/* Tabs estilo B&O */
+[data-slot="tabs-list"] {
+  background: var(--bo-warm-gray) !important;
+  padding: 4px !important;
+  gap: 2px !important;
+}
+
+[data-slot="tabs-trigger"] {
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.02em !important;
+  color: var(--bo-dark-gray) !important;
+  transition: all 0.2s ease !important;
+}
+
+[data-slot="tabs-trigger"][data-state="active"] {
+  background: white !important;
+  color: var(--bo-black) !important;
+  box-shadow: var(--shadow-soft) !important;
+}
+
+/* Botones estilo B&O */
+[data-slot="button"] {
+  font-weight: 500 !important;
+  letter-spacing: 0.01em !important;
+  transition: all 0.2s ease !important;
+}
+
+[data-slot="button"][variant="default"] {
+  background: var(--bo-charcoal) !important;
+}
+
+[data-slot="button"][variant="default"]:hover {
+  background: var(--bo-black) !important;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-medium) !important;
+}
+
+[data-slot="button"][variant="outline"] {
+  border-color: var(--bo-light-gray) !important;
+  color: var(--bo-charcoal) !important;
+}
+
+[data-slot="button"][variant="outline"]:hover {
+  border-color: var(--bo-gray) !important;
+  background: var(--bo-warm-gray) !important;
+}
+
+[data-slot="button"][variant="ghost"]:hover {
+  background: var(--bo-warm-gray) !important;
+}
+
+/* Cards estilo B&O */
+[data-slot="card"] {
+  border-color: var(--bo-light-gray) !important;
+  box-shadow: none !important;
+}
+
+/* Badges estilo B&O */
+[data-slot="badge"] {
+  font-weight: 500 !important;
+  letter-spacing: 0.02em !important;
+  font-size: 11px !important;
+}
+
+/* Labels estilo B&O */
+[data-slot="label"] {
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: var(--bo-dark-gray) !important;
+}
+
+/* Separators */
+[data-slot="separator"] {
+  background: var(--bo-light-gray) !important;
+}
+
+/* Switch estilo B&O */
+[data-slot="switch"] {
+  background: var(--bo-light-gray) !important;
+}
+
+[data-slot="switch"][data-state="checked"] {
+  background: var(--bo-charcoal) !important;
+}
+
+/* Tooltip estilo B&O */
+[data-slot="tooltip-content"] {
+  background: var(--bo-charcoal) !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.02em !important;
+  padding: 6px 10px !important;
+}
+
+/* Canvas 3D */
+canvas {
+  outline: none !important;
+}
+
+/* Animaciones suaves */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Transiciones de página */
+.tabs-content {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Hover effects para botones de material */
+.material-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.material-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.material-button:hover::before {
+  opacity: 1;
+}
+
+/* Estilo para selectores de color */
+.color-swatch {
+  position: relative;
+}
+
+.color-swatch::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  border: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.color-swatch.active::after {
+  border-color: var(--bo-charcoal);
+}
+
+/* Header glassmorphism */
+header {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-height: 50vh;
+    border-radius: 20px 20px 0 0;
+    box-shadow: var(--shadow-strong);
+  }
+}
+
+/* Focus states accesibles */
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--bo-charcoal);
+  outline-offset: 2px;
+}
+
+/* Selection color */
+::selection {
+  background: var(--bo-gray);
+  color: var(--bo-black);
+}
+
+/* ==================== ANIMACIÓN DE ONDAS DE SONIDO ==================== */
+@keyframes soundWave {
+  0%, 100% {
+    height: 20%;
+    opacity: 0.5;
+  }
+  50% {
+    height: 100%;
+    opacity: 1;
+  }
+}
+
+.sound-bar {
+  animation: soundWave 0.8s ease-in-out infinite;
+}
+
+/* Variaciones de altura para cada barra */
+.sound-bar:nth-child(1) { animation-duration: 0.6s; }
+.sound-bar:nth-child(2) { animation-duration: 0.8s; }
+.sound-bar:nth-child(3) { animation-duration: 0.5s; }
+.sound-bar:nth-child(4) { animation-duration: 0.7s; }
+.sound-bar:nth-child(5) { animation-duration: 0.9s; }
+.sound-bar:nth-child(6) { animation-duration: 0.55s; }
+.sound-bar:nth-child(7) { animation-duration: 0.75s; }
+.sound-bar:nth-child(8) { animation-duration: 0.65s; }
+
+/* Efecto de pulso para el loading */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+.pulse-ring {
+  animation: pulse-ring 1.5s ease-out infinite;
+}
+
+/* Animación de explosión */
+@keyframes explode {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.explode-animation {
+  animation: explode 0.8s ease-out forwards;
+}
+
+/* Fade transitions entre páginas */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.page-transition-exit {
+  opacity: 1;
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
