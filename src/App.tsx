@@ -297,7 +297,7 @@ function ParticleSpeaker({ isExploding, onExplosionComplete }: { isExploding: bo
     for (let i = 0; i < positions.length; i += 3) {
       const idx = i / 3;
 
-      let tx = targetList[i];
+      const tx = targetList[i];
       let ty = targetList[i + 1];
       let tz = targetList[i + 2];
 
@@ -344,12 +344,12 @@ function ParticleSpeaker({ isExploding, onExplosionComplete }: { isExploding: bo
   const positionAttr = useMemo(() => {
     const attr = new THREE.BufferAttribute(currentPositions, 3);
     return attr;
-  }, []);
+  }, [currentPositions]);
 
   const colorAttr = useMemo(() => {
     const attr = new THREE.BufferAttribute(currentColors, 3);
     return attr;
-  }, []);
+  }, [currentColors]);
 
   return (
     <points ref={pointsRef}>
