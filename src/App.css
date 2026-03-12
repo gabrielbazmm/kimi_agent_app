@@ -1,21 +1,21 @@
 /* Boxlab Designer - Estilo inspirado en Bang & Olufsen */
 
-/* Variables de color B&O */
+/* Modern Tech Color Palette */
 :root {
-  --bo-white: #fafaf9;
-  --bo-warm-gray: #f5f5f0;
-  --bo-light-gray: #e8e8e3;
-  --bo-gray: #c4c4bf;
-  --bo-dark-gray: #6b6b66;
-  --bo-charcoal: #2a2a28;
-  --bo-black: #1a1a18;
-  --bo-oak: #8b7355;
-  --bo-warm-beige: #c4b8a8;
-  
+  --bo-white: #ffffff;
+  --bo-warm-gray: #f8f9fa;
+  --bo-light-gray: #e9ecef;
+  --bo-gray: #adb5bd;
+  --bo-dark-gray: #6c757d;
+  --bo-charcoal: #2563eb;
+  --bo-black: #1e293b;
+  --bo-oak: #7c3aed;
+  --bo-warm-beige: #a78bfa;
+
   /* Sombras sutiles */
-  --shadow-soft: 0 2px 20px rgba(0, 0, 0, 0.06);
-  --shadow-medium: 0 4px 30px rgba(0, 0, 0, 0.08);
-  --shadow-strong: 0 8px 40px rgba(0, 0, 0, 0.12);
+  --shadow-soft: 0 2px 20px rgba(37, 99, 235, 0.08);
+  --shadow-medium: 0 4px 30px rgba(37, 99, 235, 0.12);
+  --shadow-strong: 0 8px 40px rgba(37, 99, 235, 0.16);
 }
 
 /* Estilos base */

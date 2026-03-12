@@ -1,0 +1,27 @@
+{
+  // Extensiones recomendadas para instalar
+  "recommendations": [
+    "dbaeumer.vscode-eslint", // Linting para JavaScript/TypeScript
+    "esbenp.prettier-vscode", // Formateo de código
+    "ms-vscode.vscode-typescript-next", // Soporte TypeScript mejorado
+    "ms-vscode.vscode-json", // Soporte para JSON
+    "ms-vscode.powershell", // PowerShell integrado
+    "christian-kohler.path-intellisense", // Auto-completado de paths
+    "christian-kohler.npm-intellisense", // Auto-completado de imports npm
+    "formulahendry.auto-rename-tag", // Renombrar etiquetas HTML/XML automáticamente
+    "bradlc.vscode-tailwindcss", // Soporte completo para Tailwind CSS
+    "wayou.vscode-todo-highlight", // Resaltar TODOs y FIXMEs
+    "aaron-bond.better-comments", // Comentarios mejorados
+    "usernamehw.error-gLens", // Ver errores en la línea
+    "usernamehw.inline-colors", // Ver colores en el código
+    "eamodio.gitlens", // Git integrado mejorado
+    "eamodio.gitlens", // Control de versiones avanzado
+    "gruntfuggly.todo-tree", // Árbol de TODOs en el explorer
+    "visualstudioexptteam.vscodeintellicode", // IntelliCode para completar código inteligente
+    "dotjoshjohnson.xml", // Soporte para XML/HTML
+    "zignd.html-css-class-completion", // Auto-completado de clases CSS
+    "ms-azuretools.vscode-docker", // Soporte para Docker
+    "ryanlsmith.javascript-booster", // Refactorización automática
+    "christian-kohler.path-intellisense" // Autocompletado de rutas de archivos
+  ]
+}

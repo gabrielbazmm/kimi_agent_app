@@ -1,0 +1,42 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "dev",
+      "problemMatcher": [],
+      "label": "npm: dev",
+      "detail": "vite",
+      "group": "none",
+      "isBackground": true
+    },
+    {
+      "type": "npm",
+      "script": "build",
+      "problemMatcher": [],
+      "label": "npm: build",
+      "detail": "tsc && vite build",
+      "group": "build"
+    },
+    {
+      "type": "npm",
+      "script": "lint",
+      "problemMatcher": [
+        "$eslint-studio"
+      ],
+      "label": "npm: lint",
+      "detail": "eslint . --ext .ts,.tsx",
+      "group": "none"
+    },
+    {
+      "type": "npm",
+      "script": "test",
+      "problemMatcher": [
+        "$jest"
+      ],
+      "label": "npm: test",
+      "detail": "jest",
+      "group": "test"
+    }
+  ]
+}
