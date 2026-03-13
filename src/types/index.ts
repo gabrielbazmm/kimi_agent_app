@@ -1,6 +1,6 @@
 // ==================== TYPES ====================
 
-export type BoxType = 'bookshelf' | 'tower' | 'monitor' | 'soundbar' | 'boombox';
+export type BoxType = 'bookshelf' | 'tower' | 'monitor' | 'soundbar' | 'boombox' | 'subwoofer';
 export type PortType = 'sealed' | 'ported' | 'passive';
 export type PortShape = 'circular' | 'slot' | 'rectangular';
 export type PortPosition = 'front' | 'back' | 'bottom';

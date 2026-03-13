@@ -1,4 +1,4 @@
-import { BookOpen, SpeakerIcon, Monitor, AudioLines, Grid3X3 } from 'lucide-react';
+import { BookOpen, SpeakerIcon, Monitor, AudioLines, Grid3X3, Volume2 } from 'lucide-react';
 import { Label } from '@/components/ui/label';
 import type { BoxType, BoxConfig } from '@/types';
 import { boxTypeConfigs } from '@/constants';
@@ -15,6 +15,7 @@ export function BoxTypePanel({ config, setConfig }: BoxTypePanelProps) {
     { id: 'monitor', label: 'Monitor', icon: Monitor, desc: 'Estudio, nearfield' },
     { id: 'soundbar', label: 'Soundbar', icon: AudioLines, desc: 'TV, cine en casa' },
     { id: 'boombox', label: 'Boombox', icon: Grid3X3, desc: 'Portátil, retro' },
+    { id: 'subwoofer', label: 'Subwoofer', icon: Volume2, desc: 'Graves profundos' },
   ];
 
   const handleTypeChange = (type: BoxType) => {

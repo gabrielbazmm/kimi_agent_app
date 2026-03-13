@@ -51,6 +51,14 @@ export const boxTypeConfigs: Record<BoxType, BoxTypeConfigData> = {
     defaultPort: { type: 'passive', shape: 'circular', position: 'front', diameter: 80, length: 0, count: 2 },
     defaultName: 'Boombox'
   },
+  subwoofer: {
+    dimensions: { width: 400, height: 450, depth: 450 },
+    defaultDrivers: [
+      { id: '1', type: 'sub', size: 300, position: { x: 0, y: 0 }, firing: 'front' },
+    ],
+    defaultPort: { type: 'ported', shape: 'circular', position: 'front', diameter: 100, length: 200, count: 1 },
+    defaultName: 'Subwoofer'
+  },
 };
 
 // ==================== COLORES Y ETIQUETAS DE DRIVERS ====================
