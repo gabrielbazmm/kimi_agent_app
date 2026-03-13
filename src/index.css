@@ -6,35 +6,41 @@
 
 @layer base {
   :root {
-    /* Paleta de colores inspirada en Bang & Olufsen */
-    --background: 40 9% 98%;
-    --foreground: 40 6% 10%;
-    --card: 0 0% 100%;
-    --card-foreground: 40 6% 10%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 40 6% 10%;
-    --primary: 40 6% 12%;
-    --primary-foreground: 40 9% 98%;
-    --secondary: 40 6% 96%;
-    --secondary-foreground: 40 6% 12%;
-    --muted: 40 6% 96%;
-    --muted-foreground: 40 4% 46%;
-    --accent: 40 6% 96%;
-    --accent-foreground: 40 6% 12%;
-    --destructive: 0 84.2% 60.2%;
+    /* Premium Dark Theme - Inspired by high-end audio equipment */
+    --background: 220 15% 8%;
+    --foreground: 40 10% 92%;
+    --card: 220 15% 11%;
+    --card-foreground: 40 10% 92%;
+    --popover: 220 15% 11%;
+    --popover-foreground: 40 10% 92%;
+    --primary: 38 65% 55%;
+    --primary-foreground: 220 15% 8%;
+    --secondary: 220 12% 16%;
+    --secondary-foreground: 40 10% 85%;
+    --muted: 220 12% 14%;
+    --muted-foreground: 220 8% 55%;
+    --accent: 38 65% 55%;
+    --accent-foreground: 220 15% 8%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
-    --border: 40 6% 90%;
-    --input: 40 6% 90%;
-    --ring: 40 6% 12%;
+    --border: 220 12% 18%;
+    --input: 220 12% 18%;
+    --ring: 38 65% 55%;
     --radius: 0.625rem;
-    --sidebar-background: 40 9% 98%;
-    --sidebar-foreground: 40 5% 26%;
-    --sidebar-primary: 40 6% 12%;
-    --sidebar-primary-foreground: 40 9% 98%;
-    --sidebar-accent: 40 6% 96%;
-    --sidebar-accent-foreground: 40 6% 12%;
-    --sidebar-border: 40 6% 91%;
-    --sidebar-ring: 40 6% 12%;
+    --sidebar-background: 220 15% 10%;
+    --sidebar-foreground: 220 8% 60%;
+    --sidebar-primary: 38 65% 55%;
+    --sidebar-primary-foreground: 220 15% 8%;
+    --sidebar-accent: 220 12% 16%;
+    --sidebar-accent-foreground: 40 10% 92%;
+    --sidebar-border: 220 12% 15%;
+    --sidebar-ring: 38 65% 55%;
+    
+    /* Custom premium colors */
+    --gold: 38 65% 55%;
+    --gold-muted: 38 40% 40%;
+    --surface: 220 15% 12%;
+    --surface-elevated: 220 14% 15%;
   }
 }
 
@@ -56,7 +62,7 @@
 }
 
 @layer utilities {
-  /* Utilidades personalizadas para estilo B&O */
+  /* Premium utility classes */
   .text-balance {
     text-wrap: balance;
   }
@@ -65,38 +71,80 @@
     font-weight: 300;
   }
 
-  /* Gradientes sutiles */
-  .gradient-bo {
-    background: linear-gradient(135deg, #414133 0%, #d1d172 100%);
+  /* Premium gradients */
+  .gradient-premium {
+    background: linear-gradient(135deg, hsl(220 15% 12%) 0%, hsl(220 15% 8%) 100%);
   }
 
-  /* Sombras B&O */
-  .shadow-bo-soft {
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+  .gradient-gold {
+    background: linear-gradient(135deg, hsl(38 65% 55%) 0%, hsl(38 50% 45%) 100%);
   }
 
-  .shadow-bo-medium {
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+  .gradient-surface {
+    background: linear-gradient(180deg, hsl(220 15% 14%) 0%, hsl(220 15% 10%) 100%);
   }
 
-  .shadow-bo-strong {
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+  /* Premium shadows */
+  .shadow-premium-sm {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.2);
   }
 
-  /* Efecto glassmorphism */
-  .glass {
-    background: rgba(255, 255, 255, 0.8);
+  .shadow-premium-md {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.25);
+  }
+
+  .shadow-premium-lg {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .shadow-gold-glow {
+    box-shadow: 0 0 20px rgba(196, 155, 70, 0.15), 0 4px 16px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Glass effects for dark theme */
+  .glass-dark {
+    background: rgba(30, 35, 45, 0.85);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
   }
 
-  /* Tracking de letras */
-  .tracking-bo {
-    letter-spacing: 0.08em;
+  .glass-dark-strong {
+    background: rgba(20, 25, 32, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
   }
 
-  /* Transiciones suaves */
-  .transition-bo {
+  /* Premium text styles */
+  .text-gold {
+    color: hsl(38 65% 55%);
+  }
+
+  .text-gold-muted {
+    color: hsl(38 40% 50%);
+  }
+
+  /* Premium borders */
+  .border-gold {
+    border-color: hsl(38 65% 55% / 0.3);
+  }
+
+  .border-gold-strong {
+    border-color: hsl(38 65% 55% / 0.6);
+  }
+
+  /* Letter spacing */
+  .tracking-premium {
+    letter-spacing: 0.1em;
+  }
+
+  /* Smooth transitions */
+  .transition-premium {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Active state with gold accent */
+  .active-gold {
+    background: linear-gradient(135deg, hsl(38 65% 55%) 0%, hsl(38 50% 45%) 100%);
+    color: hsl(220 15% 8%);
   }
 }

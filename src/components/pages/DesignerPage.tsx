@@ -61,27 +61,28 @@ export function DesignerPage() {
   };
 
   return (
-    <div className="h-screen flex flex-col bg-neutral-50">
+    <div className="h-screen flex flex-col bg-background">
       {/* Header */}
-      <header className="flex-shrink-0 h-14 bg-white border-b border-neutral-200 z-50">
+      <header className="flex-shrink-0 h-14 bg-card border-b border-border z-50">
         <div className="h-full px-4 lg:px-6 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-neutral-900 rounded-lg flex items-center justify-center">
-              <Speaker className="w-4 h-4 text-white" />
+            <div className="w-9 h-9 gradient-gold rounded-lg flex items-center justify-center shadow-premium-sm">
+              <Speaker className="w-4 h-4 text-background" />
             </div>
             <div className="hidden sm:block">
-              <h1 className="text-base font-semibold tracking-tight text-neutral-900">Boxlab</h1>
+              <h1 className="text-base font-semibold tracking-tight text-foreground">Boxlab</h1>
+              <p className="text-[10px] text-gold-muted uppercase tracking-premium">Designer Pro</p>
             </div>
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3">
-            <Badge variant="secondary" className="bg-neutral-100 text-xs">
+            <Badge variant="secondary" className="bg-secondary text-secondary-foreground text-xs border border-border">
               {boxTypeConfigs[config.boxType].defaultName}
             </Badge>
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button variant="ghost" size="icon" className="h-8 w-8" onClick={resetConfig}>
+                  <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-foreground hover:bg-secondary" onClick={resetConfig}>
                     <RotateCcw className="w-4 h-4" />
                   </Button>
                 </TooltipTrigger>
@@ -89,9 +90,9 @@ export function DesignerPage() {
               </Tooltip>
             </TooltipProvider>
 
-            <Button variant="outline" size="sm" className="gap-2 h-8">
+            <Button size="sm" className="gap-2 h-8 gradient-gold text-background hover:opacity-90 shadow-gold-glow">
               <Download className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline text-xs">Exportar</span>
+              <span className="hidden sm:inline text-xs font-medium">Exportar</span>
             </Button>
           </div>
         </div>
@@ -100,18 +101,18 @@ export function DesignerPage() {
       {/* Main Content */}
       <main className="flex-1 flex min-h-0">
         {/* Left Sidebar - Navigation */}
-        <aside className="flex-shrink-0 w-16 lg:w-20 bg-white border-r border-neutral-200 flex flex-col py-4">
-          <nav className="flex-1 flex flex-col items-center gap-1">
+        <aside className="flex-shrink-0 w-16 lg:w-20 bg-card border-r border-border flex flex-col py-4">
+          <nav className="flex-1 flex flex-col items-center gap-1.5">
             {navItems.map(({ id, icon: Icon, label }) => (
               <TooltipProvider key={id}>
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <button
                       onClick={() => setActiveTab(id)}
-                      className={`w-12 h-12 lg:w-14 lg:h-14 flex flex-col items-center justify-center gap-1 rounded-xl transition-all duration-200 ${
+                      className={`w-12 h-12 lg:w-14 lg:h-14 flex flex-col items-center justify-center gap-1 rounded-xl transition-premium ${
                         activeTab === id
-                          ? 'bg-neutral-900 text-white shadow-lg'
-                          : 'text-neutral-500 hover:bg-neutral-100 hover:text-neutral-700'
+                          ? 'gradient-gold text-background shadow-gold-glow'
+                          : 'text-muted-foreground hover:bg-secondary hover:text-foreground'
                       }`}
                     >
                       <Icon className="w-5 h-5" />
@@ -126,13 +127,13 @@ export function DesignerPage() {
             ))}
           </nav>
           
-          <div className="flex flex-col items-center pt-4 border-t border-neutral-100 mx-3">
-            <span className="text-[9px] text-neutral-400 font-medium">v3.0</span>
+          <div className="flex flex-col items-center pt-4 border-t border-border mx-3">
+            <span className="text-[9px] text-muted-foreground font-medium">v3.0</span>
           </div>
         </aside>
 
         {/* 3D Canvas */}
-        <div className="flex-1 relative bg-gradient-to-br from-neutral-100 via-neutral-50 to-neutral-200 min-w-0">
+        <div className="flex-1 relative gradient-premium min-w-0">
           <Canvas camera={{ position: [1.2, 0.5, 1.8], fov: 45 }} className="w-full h-full" shadows dpr={[1, 2]}>
             <Scene config={config} />
           </Canvas>
@@ -140,32 +141,32 @@ export function DesignerPage() {
           {/* Bottom Status Bar */}
           <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
             <div className="flex items-center gap-2 flex-wrap">
-              <Badge variant="secondary" className="bg-white/90 backdrop-blur-sm shadow-sm text-xs">
+              <Badge variant="secondary" className="glass-dark border border-border shadow-premium-sm text-xs text-foreground">
                 {config.dimensions.width} × {config.dimensions.height} × {config.dimensions.depth} mm
               </Badge>
-              <Badge variant="secondary" className="bg-white/90 backdrop-blur-sm shadow-sm text-xs">
+              <Badge variant="secondary" className="glass-dark border border-border shadow-premium-sm text-xs text-foreground">
                 {config.thickness}mm {config.material}
               </Badge>
-              <Badge variant="secondary" className="bg-white/90 backdrop-blur-sm shadow-sm text-xs">
+              <Badge variant="secondary" className="glass-dark border border-border shadow-premium-sm text-xs text-foreground">
                 {config.drivers.length} driver{config.drivers.length !== 1 ? 's' : ''}
               </Badge>
               {config.showInternal && (
-                <Badge variant="secondary" className="bg-amber-100/90 text-amber-700 backdrop-blur-sm shadow-sm text-xs">
+                <Badge variant="secondary" className="glass-dark border-gold shadow-gold-glow text-xs text-gold">
                   Vista interna
                 </Badge>
               )}
             </div>
-            <div className="text-[10px] text-neutral-500 bg-white/90 backdrop-blur-sm px-2.5 py-1.5 rounded-md shadow-sm hidden sm:block">
+            <div className="text-[10px] text-muted-foreground glass-dark border border-border px-2.5 py-1.5 rounded-md shadow-premium-sm hidden sm:block">
               Arrastra para rotar · Scroll para zoom
             </div>
           </div>
         </div>
 
         {/* Right Panel */}
-        <aside className="flex-shrink-0 w-80 lg:w-96 xl:w-[420px] bg-white border-l border-neutral-200 flex flex-col min-h-0">
+        <aside className="flex-shrink-0 w-80 lg:w-96 xl:w-[420px] bg-card border-l border-border flex flex-col min-h-0">
           {/* Panel Header */}
-          <div className="flex-shrink-0 px-5 py-4 border-b border-neutral-100">
-            <h2 className="text-sm font-semibold text-neutral-900 tracking-wide">
+          <div className="flex-shrink-0 px-5 py-4 border-b border-border">
+            <h2 className="text-sm font-semibold text-foreground tracking-wide">
               {panelTitles[activeTab]}
             </h2>
           </div>
