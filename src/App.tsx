@@ -1,17 +1,13 @@
-import { useState } from 'react';
 import { LandingPage, LoadingPage, DesignerPage } from '@/components/pages';
-import type { AppState } from '@/types';
+import { useAppNavigation } from '@/hooks/useAppNavigation';
 
 function App() {
-  const [appState, setAppState] = useState<AppState>('landing');
-
-  const handleStart = () => setAppState('loading');
-  const handleLoadingComplete = () => setAppState('designer');
+  const { appState, goToLoading, goToDesigner } = useAppNavigation();
 
   return (
     <>
-      {appState === 'landing' && <LandingPage onStart={handleStart} />}
-      {appState === 'loading' && <LoadingPage onComplete={handleLoadingComplete} />}
+      {appState === 'landing' && <LandingPage onStart={goToLoading} />}
+      {appState === 'loading' && <LoadingPage onComplete={goToDesigner} />}
       {appState === 'designer' && <DesignerPage />}
     </>
   );
