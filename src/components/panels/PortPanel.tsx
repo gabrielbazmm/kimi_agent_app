@@ -10,6 +10,8 @@ interface PortPanelProps {
 }
 
 export function PortPanel({ config, setConfig }: PortPanelProps) {
+  const isSubwoofer = config.boxType === 'subwoofer';
+  
   return (
     <div className="space-y-4">
       <div className="space-y-2">
@@ -20,11 +22,25 @@ export function PortPanel({ config, setConfig }: PortPanelProps) {
             <SelectItem value="sealed">Cerrada (Sealed)</SelectItem>
             <SelectItem value="ported">Con puerto (Bass Reflex)</SelectItem>
             <SelectItem value="passive">Radiador pasivo</SelectItem>
+            {isSubwoofer && (
+              <>
+                <SelectItem value="bandpass">Paso banda (Bandpass)</SelectItem>
+                <SelectItem value="transmission-line">Línea de transmisión</SelectItem>
+                <SelectItem value="horn-loaded">Cargado a bocina (Horn)</SelectItem>
+              </>
+            )}
           </SelectContent>
         </Select>
+        {isSubwoofer && (
+          <p className="text-[10px] text-neutral-400 mt-1">
+            {config.port.type === 'bandpass' && 'Diseño con cámara sellada + cámara con puerto. Mayor eficiencia en rango específico.'}
+            {config.port.type === 'transmission-line' && 'Línea acústica que absorbe ondas traseras. Graves profundos y limpios.'}
+            {config.port.type === 'horn-loaded' && 'Bocina que amplifica eficiencia. Máximo SPL y alcance.'}
+          </p>
+        )}
       </div>
 
-      {config.port.type !== 'sealed' && (
+      {(config.port.type !== 'sealed' && config.port.type !== 'horn-loaded') && (
         <>
           <Separator className="bg-neutral-200" />
 
@@ -60,13 +76,33 @@ export function PortPanel({ config, setConfig }: PortPanelProps) {
             <Slider value={[config.port.diameter]} onValueChange={([v]) => setConfig(prev => ({ ...prev, port: { ...prev.port, diameter: v } }))} min={25} max={150} step={5} />
           </div>
 
-          {config.port.type === 'ported' && (
+          {(config.port.type === 'ported' || config.port.type === 'bandpass') && (
             <div className="space-y-2">
               <div className="flex justify-between">
                 <Label className="text-xs">Longitud del tubo</Label>
                 <span className="text-xs">{config.port.length} mm</span>
               </div>
               <Slider value={[config.port.length]} onValueChange={([v]) => setConfig(prev => ({ ...prev, port: { ...prev.port, length: v } }))} min={50} max={300} step={10} />
+            </div>
+          )}
+
+          {config.port.type === 'transmission-line' && (
+            <div className="space-y-2">
+              <div className="flex justify-between">
+                <Label className="text-xs">Longitud de línea</Label>
+                <span className="text-xs">{config.port.length} mm</span>
+              </div>
+              <Slider value={[config.port.length]} onValueChange={([v]) => setConfig(prev => ({ ...prev, port: { ...prev.port, length: v } }))} min={500} max={3000} step={50} />
+              <p className="text-[10px] text-neutral-400">Típicamente 1/4 de longitud de onda de la frecuencia objetivo</p>
+            </div>
+          )}
+
+          {config.port.type === 'bandpass' && (
+            <div className="p-2 bg-amber-50 rounded-lg border border-amber-200">
+              <p className="text-[10px] text-amber-700">
+                Diseño de 4to orden: cámara sellada trasera + cámara porteada frontal.
+                El puerto actúa como única salida de sonido.
+              </p>
             </div>
           )}
 

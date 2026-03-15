@@ -25,11 +25,21 @@ function FrequencyResponseGraph({ config }: { config: BoxConfig }) {
 
       // Simulación simplificada de respuesta
       if (config.port.type === 'ported') {
-        // Respuesta extendida en bajos para ported
+        // Respuesta extendida en bajos para bass reflex
         response = -3 * Math.exp(-f / 80) + Math.sin(f / 1000) * 2;
       } else if (config.port.type === 'sealed') {
         // Roll-off más pronunciado para sealed
         response = -6 * Math.exp(-f / 60) + Math.sin(f / 1000) * 1.5;
+      } else if (config.port.type === 'bandpass') {
+        // Respuesta de paso banda - pico en frecuencia central, roll-off en ambos extremos
+        const centerFreq = 50;
+        response = -Math.abs(Math.log10(f / centerFreq)) * 8 + 3;
+      } else if (config.port.type === 'transmission-line') {
+        // Línea de transmisión - extensión profunda pero controlada
+        response = -2 * Math.exp(-f / 100) + Math.sin(f / 800) * 1.5;
+      } else if (config.port.type === 'horn-loaded') {
+        // Horn - alta eficiencia, roll-off en bajos profundos
+        response = -8 * Math.exp(-f / 50) + 4 + Math.sin(f / 1200) * 1;
       } else {
         response = -4 * Math.exp(-f / 70) + Math.sin(f / 1000) * 2;
       }
@@ -127,7 +137,12 @@ export function SpecsPanel({ config }: SpecsPanelProps) {
   const bracingVolume = internalVolume * (config.internalBracing === 'full' ? 0.15 : config.internalBracing === 'cross' ? 0.08 : config.internalBracing === 'simple' ? 0.03 : 0);
   const netVolume = Math.max(0, internalVolume - bracingVolume);
   const surfaceArea = 2 * (width * height + width * depth + height * depth) / 10000;
-  const tuningFreq = config.port.type === 'ported' ? Math.round(35 + (1000 / netVolume) * 0.5) : config.port.type === 'sealed' ? Math.round(45 + (800 / netVolume)) : 40;
+  const tuningFreq = config.port.type === 'ported' ? Math.round(35 + (1000 / netVolume) * 0.5) 
+    : config.port.type === 'sealed' ? Math.round(45 + (800 / netVolume)) 
+    : config.port.type === 'bandpass' ? Math.round(45 + (600 / netVolume) * 0.4)
+    : config.port.type === 'transmission-line' ? Math.round(25 + (500 / netVolume) * 0.3)
+    : config.port.type === 'horn-loaded' ? Math.round(40 + (700 / netVolume) * 0.5)
+    : 40;
 
   const specs = [
     { label: 'Volumen bruto', value: `${grossVolume.toFixed(2)} L` },

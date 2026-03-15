@@ -2,7 +2,7 @@ import { DoubleSide } from 'three';
 import type { PortConfig } from '@/types';
 
 export function Port({ config, w, h, d }: { config: PortConfig; w: number; h: number; d: number }) {
-  if (config.type === 'sealed') return null;
+  if (config.type === 'sealed' || config.type === 'horn-loaded') return null;
 
   const scale = 0.003;
   const portRadius = (config.diameter / 2) * scale;
@@ -31,6 +31,62 @@ export function Port({ config, w, h, d }: { config: PortConfig; w: number; h: nu
         <mesh>
           <torusGeometry args={[portRadius * 1.5, 0.008, 8, 32]} />
           <meshStandardMaterial color="#111" roughness={0.6} />
+        </mesh>
+      </group>
+    );
+  }
+
+  // Bandpass: larger port opening with distinctive grille
+  if (config.type === 'bandpass') {
+    const grillSize = portRadius * 2;
+    return (
+      <group position={position} rotation={rotation}>
+        {/* Main port opening - larger for bandpass */}
+        <mesh position={[0, 0, 0.002]}>
+          <ringGeometry args={[portRadius * 0.9, portRadius * 1.2, 32]} />
+          <meshStandardMaterial color="#1a1a1a" roughness={0.5} metalness={0.2} />
+        </mesh>
+        <mesh position={[0, 0, 0.003]}>
+          <circleGeometry args={[portRadius * 0.9, 32]} />
+          <meshStandardMaterial color="#050505" roughness={0.9} />
+        </mesh>
+        {/* Protective grille bars */}
+        {[-0.6, -0.2, 0.2, 0.6].map((offset, i) => (
+          <mesh key={i} position={[offset * grillSize, 0, 0.006]}>
+            <boxGeometry args={[0.004, grillSize * 1.8, 0.003]} />
+            <meshStandardMaterial color="#2a2a2a" roughness={0.4} metalness={0.5} />
+          </mesh>
+        ))}
+        {/* Port tube */}
+        {portDepth > 0.01 && (
+          <mesh position={[0, 0, -portDepth / 2]} rotation={[Math.PI / 2, 0, 0]}>
+            <cylinderGeometry args={[portRadius * 0.9, portRadius * 0.9, portDepth, 32, 1, true]} />
+            <meshStandardMaterial color="#1a1a1a" roughness={0.6} side={DoubleSide} />
+          </mesh>
+        )}
+      </group>
+    );
+  }
+
+  // Transmission line: slot-like vent at bottom
+  if (config.type === 'transmission-line') {
+    const slotWidth = portRadius * 3;
+    const slotHeight = portRadius * 0.5;
+    return (
+      <group position={position} rotation={rotation}>
+        {/* Narrow slot opening */}
+        <mesh position={[0, 0, 0.002]}>
+          <boxGeometry args={[slotWidth + 0.015, slotHeight + 0.015, 0.004]} />
+          <meshStandardMaterial color="#0a0a0a" roughness={0.5} />
+        </mesh>
+        <mesh position={[0, 0, 0.003]}>
+          <boxGeometry args={[slotWidth, slotHeight, 0.005]} />
+          <meshStandardMaterial color="#020202" roughness={0.9} />
+        </mesh>
+        {/* Acoustic damping material visible inside */}
+        <mesh position={[0, 0, -0.02]}>
+          <boxGeometry args={[slotWidth * 0.9, slotHeight * 0.8, 0.03]} />
+          <meshStandardMaterial color="#3a3a3a" roughness={0.95} />
         </mesh>
       </group>
     );
