@@ -2,9 +2,21 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}"
+      ],
+      "name": "Launch Agent Extension",
+      "outFiles": [
+        "${workspaceFolder}/out/**/*.js"
+      ],
+      "preLaunchTask": "pnpm: install",
+      "request": "launch",
+      "type": "extensionHost"
+    },
+    {
       "type": "node",
       "request": "launch",
-      "name": "Debug TypeScript",
+      "name": "Debug Agent",
       "skipFiles": [
         "<node_internals>/**"
       ],
@@ -12,16 +24,19 @@
       "outFiles": [
         "${workspaceFolder}/dist/**/*.js"
       ],
-      "preLaunchTask": "npm: build"
+      "preLaunchTask": "pnpm: build"
     },
     {
       "type": "chrome",
       "request": "launch",
-      "name": "Launch Chrome",
-      "url": "http://localhost:5173",
+      "name": "Agent Web App",
+      "url": "${defaultBuildRoot}",
       "webRoot": "${workspaceFolder}",
-      "preLaunchTask": "npm: dev"
+      "preLaunchTask": "npm: dev",
+      "sourceMapPathOverrides": {
+        "webpack:///./*": "${webRoot}/*"
+      }
     }
   ]
 }
- 
+
